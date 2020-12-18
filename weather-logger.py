@@ -22,7 +22,7 @@ def log_data():
     
     
 log_data() # do once on startup
-schedule.every(15).seconds.do(log_data)
+schedule.every(5).minutes.do(log_data)
 
 while True:
     schedule.run_pending()
