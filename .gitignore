@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Emacs droppings
+*~
+
+# Weather log file
+weather-log.txt
+
 # C extensions
 *.so
 
