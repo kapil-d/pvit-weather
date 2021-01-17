@@ -9,7 +9,7 @@ from serial import Serial
 portname = '/dev/ttyUSB0'  # portname = 'COM1' on Windows
 portspeed = 9600
 logfilename = 'weather-log.txt'
-station_name = 'ABC'       # should be unique
+station_id = 'ABC'       # should be unique
 
 def log_data():
     log_time = time.asctime()
@@ -19,7 +19,7 @@ def log_data():
     response = serial.readline().decode('utf-8')
     print(station_id, log_time, response.rstrip())
     with open(logfilename, 'a') as f:
-        f.write(station_id * log_time + ',' + response)
+        f.write(station_id + ',' +  log_time + ',' + response)
     
     
 log_data() # do once on startup
