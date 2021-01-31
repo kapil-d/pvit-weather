@@ -1,7 +1,7 @@
 #
 # Simple weather data logger
 #
-
+import  sys
 import schedule
 import time
 from serial import Serial
@@ -11,6 +11,10 @@ portspeed = 9600
 logfilename = 'weather-log.txt'
 station_id = 'ABC'       # should be unique
 
+n=len(sys.argv)
+if n>1:
+    station_id=sys.argv[1]
+    
 def log_data():
     log_time = time.asctime()
     serial = Serial(portname, portspeed, timeout=None)
@@ -19,9 +23,9 @@ def log_data():
     response = serial.readline().decode('utf-8')
     print(station_id, log_time, response.rstrip())
     with open(logfilename, 'a') as f:
-        f.write(station_id + ',' +  log_time + ',' + response)
-    
-    
+        f.write(station_id + ',' + log_time + ',' + response)
+
+
 log_data() # do once on startup
 schedule.every(5).minutes.do(log_data)
 
