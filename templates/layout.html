@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bloggy</title>
+    {{include_meta}}
+    {{include_helpers}}
+    {{include_static 'style.css'}}
+  </head>
+  <body>
+    <div class="page">
+      <a href="/" class="title"><h1>PVIT Weather</h1></a>
+      {{block main}}
+      {{include}}
+      {{end}}
+    </div>
+  </body>
+</html>

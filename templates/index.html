@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+
+<table>
+  <tr>
+    <th>Station</th>
+    <th>Datetime</th>
+    <th>Temperature</th>
+  </tr>
+{{for reading in readings:}}
+    <tr>
+      <td>{{=reading.station_id}}</td>
+      <td>{{=reading.date}}</td>
+      <td>{{=reading.temperature}}</td>
+    </tr>
+{{pass}}
+{{if not readings:}}
+    <li><em>No readings here so far.</em></li>
+{{pass}}    
+</table>    
