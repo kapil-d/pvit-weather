@@ -9,6 +9,7 @@ __pycache__/
 # Weather runtime files
 weather-log.txt
 databases/
+localfiles/
 
 # C extensions
 *.so
