@@ -41,14 +41,13 @@ def index():
 
 @app.route("/submit")
 def submit():
-    station_id = request.params.station
-    datetime = request.params.datetime
-    temperature = request.params.temp
+    station_id = request.query_params.station
+    datetime = request.query_params.datetime
+    temperature = request.query_params.temp
 
     reading = Reading.create(
         station_id = station_id,
         date = datetime,
         temperature = temperature)
-    print(reading)
     db.commit()
 
