@@ -36,7 +36,7 @@ def setup():
     
 @app.route("/")
 def index():
-    readings = Reading.all().select()
+    readings = Reading.all().select(orderby=~Reading.date)
     return dict(readings=readings)
 
 @app.route("/submit")
