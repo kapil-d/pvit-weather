@@ -9,7 +9,7 @@
 {{for reading in readings:}}
     <tr>
       <td>{{=reading.station_id}}</td>
-      <td>{{=reading.date}}</td>
+      <td>{{=reading.date.ctime()}}</td>
       <td>{{=reading.temperature}}</td>
     </tr>
 {{pass}}
