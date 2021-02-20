@@ -1,4 +1,5 @@
 import time
+import datetime
 from weppy import App, request
 from weppy.orm import Model, Field
 from weppy.orm import Database
@@ -8,7 +9,7 @@ app = App(__name__)
 class Reading(Model):
     """ Weather Reading """
     station_id = Field.text()
-    date = Field.text()
+    date = Field.datetime()
     temperature = Field.float()
 
     validation = {
@@ -17,7 +18,7 @@ class Reading(Model):
         'temperature': {'presence': True}
     }
 
-db = Database(app, auto_migrate=True)    
+db = Database(app, auto_migrate=False)    
 db.define_models(Reading)
 
 app.pipeline = [
@@ -42,12 +43,12 @@ def index():
 @app.route("/submit")
 def submit():
     station_id = request.query_params.station
-    datetime = request.query_params.datetime
+    date_time = request.query_params.datetime
     temperature = request.query_params.temp
 
     reading = Reading.create(
         station_id = station_id,
-        date = datetime,
+        date = datetime.datetime.strptime(date_time, "%a %b %d %H:%M:%S %Y"),
         temperature = temperature)
     db.commit()
 
