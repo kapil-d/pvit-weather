@@ -45,8 +45,8 @@ def log_data():
         print("sent to {}".format(server_url), end='')
     print() # newline
 
-log_data() # do once on startup
-schedule.every(5).minutes.do(log_data)
+for minute in range(0, 60, 5):
+    schedule.every().hour.at(":{:02d}".format(minute)).do(job)
 
 while True:
     schedule.run_pending()
