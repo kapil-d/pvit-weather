@@ -46,7 +46,7 @@ def log_data():
     print() # newline
 
 for minute in range(0, 60, 5):
-    schedule.every().hour.at(":{:02d}".format(minute)).do(job)
+    schedule.every().hour.at(":{:02d}".format(minute)).do(log_data)
 
 while True:
     schedule.run_pending()
