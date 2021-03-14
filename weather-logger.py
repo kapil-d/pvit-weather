@@ -7,7 +7,7 @@ import time
 import requests
 from serial import Serial
 
-portname = '/dev/ttyUSB0'  # portname = 'COM1' on Windows
+portname = 'COM3'  # portname = 'COM1' on Windows
 portspeed = 9600
 logfilename = 'weather-log.txt'
 server_url = None
