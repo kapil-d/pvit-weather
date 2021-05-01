@@ -17,7 +17,12 @@ SoftwareSerial ESP8266Serial(2,3);   // 2:Rx, 3:Tx
 void setup()
 {
   Serial.begin(9600);
+  
   ESP8266Serial.begin(115200);
+  ESP8266Serial.println("AT+IPR=9600");
+  delay(1000);
+  ESP8266Serial.end();
+  ESP8266Serial.begin(9600);
 
   Serial.println("Set NL and CR in Serial Monitor.");
   Serial.println("Ready.");
@@ -31,7 +36,7 @@ void loop()
   if (ESP8266Serial.available()) {
     Serial.write(ESP8266Serial.read());
   }
-  if (Serial.available()) {
+  while (Serial.available()) {
     ESP8266Serial.write(Serial.read());
   }
 }
