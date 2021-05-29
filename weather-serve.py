@@ -6,6 +6,8 @@ from weppy.orm import Database
 
 app = App(__name__)
 
+allowed_stations = ['KD1', 'PRM', 'PVH', 'SMA']
+
 class Reading(Model):
     """ Weather Reading """
     station_id = Field.text()
@@ -18,7 +20,7 @@ class Reading(Model):
         'temperature': {'presence': True}
     }
 
-db = Database(app, auto_migrate=False)    
+db = Database(app, auto_migrate=False)
 db.define_models(Reading)
 
 app.pipeline = [
@@ -34,7 +36,7 @@ def setup():
     )
     print(reading)
     db.commit()
-    
+
 @app.route("/")
 def index():
     readings = Reading.all().select(orderby=~Reading.date)
@@ -46,9 +48,9 @@ def submit():
     date_time = request.query_params.datetime
     temperature = request.query_params.temp
 
-    reading = Reading.create(
-        station_id = station_id,
-        date = datetime.datetime.strptime(date_time, "%a %b %d %H:%M:%S %Y"),
-        temperature = temperature)
-    db.commit()
-
+    if station_id in allowed_stations:
+        reading = Reading.create(
+            station_id = station_id,
+            date = datetime.datetime.strptime(date_time, "%a %b %d %H:%M:%S %Y"),
+            temperature = temperature)
+        db.commit()
