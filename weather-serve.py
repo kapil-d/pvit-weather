@@ -39,6 +39,11 @@ def setup():
 
 @app.route("/")
 def index():
+    readings = [Reading.all().select(orderby=~Reading.date).first()]
+    return dict(readings=readings)
+
+@app.route("/log")
+def log():
     readings = Reading.all().select(orderby=~Reading.date)
     return dict(readings=readings)
 
