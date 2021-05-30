@@ -1,12 +1,13 @@
 body           { font-family: sans-serif; background: #eee; }
-a, h1, h2      { color: #377ba8; }
-h1, h2, h4, h5 { font-family: 'Georgia', serif; }
+a, h1, h2      { color: #d41100; }
+p              { color: white; }
+h1, h2, h4, h5 { font-family: 'Georgia', sans-serif; }
 h1             { border-bottom: 2px solid #eee; }
 h2             { font-size: 1.2em; }
-table, th, td  {border: 1px solid black;}
+table, th, td  {border: 1px solid white; color: white;}
 
 .page          { margin: 2em auto; width: 35em; border: 5px solid #ccc;
-                 padding: 0.8em; background: white; }
+                 padding: 0.8em; background: black; }
 .title         { text-decoration: none; }
 .readings         { list-style: none; margin: 0; padding: 0; }
 .readings li      { margin: 0.8em 1.2em; }

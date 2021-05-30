@@ -1,6 +1,7 @@
 import time
 import datetime
 from weppy import App, request
+from weppy.tools import service
 from weppy.orm import Model, Field
 from weppy.orm import Database
 
@@ -41,6 +42,13 @@ def setup():
 def index():
     readings = [Reading.all().select(orderby=~Reading.date).first()]
     return dict(readings=readings)
+
+@app.route("/json")
+@service.json
+def json():
+    readings = [Reading.all().select(orderby=~Reading.date).first()]
+    return dict(readings=readings)
+
 
 @app.route("/log")
 def log():
